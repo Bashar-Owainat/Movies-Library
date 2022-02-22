@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/Bashar-Owainat/Movies-Library#readme",
   "dependencies": {
+    "axios": "^0.26.0",
+    "dotenv": "^16.0.0",
     "express": "^4.17.3"
   }
 }
