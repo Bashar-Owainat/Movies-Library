@@ -31,3 +31,7 @@ Add an image of your WRRC here
 
 ## wrrc for moives
 ![wrrc](./wrrc.drawio.png);
+
+
+## wrrc for third party API
+![wrrc](./wrrc-API.drawio.png);
