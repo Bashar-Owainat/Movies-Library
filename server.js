@@ -26,6 +26,7 @@ app.get('/trending', trendingHandler);
 app.get('/search', searchMoviesHandler)
 app.get('/discover', discoverHandler);
 app.get('/similar', similarMoiveHandler);
+app.use('*', notFoundHandler);
 
 function getMoviesHandler(req, res) {
     let result = [];
@@ -49,10 +50,10 @@ function trendingHandler(req, res) {
     axios.get(`http://api.themoviedb.org/3/trending/all/week?api_key=${APIKEY}&language=en-US`)
         .then(getResponse => {
             getResponse.data.results.map(value =>{
-                let newMovie = new Movie(value.title, value.poster_path, value.overview);
+                let newMovie = new Movie(value.id, value.title, value.poster_path, value.overview);
                 results.push(newMovie);
-                return res.status(200).json(results);
             })
+            return res.status(200).json(results);
         }).catch(error =>{
             errorHandler(error, req, res);
         })
@@ -113,6 +114,10 @@ function errorHandler(error, req, res){
         message: error
     }
     return res.status(500).sent(err);
+}
+
+function notFoundHandler(req, res){
+    return res.status(404).send("Not Found");
 }
 
 
