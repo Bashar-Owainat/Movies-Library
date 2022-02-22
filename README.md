@@ -35,3 +35,9 @@ Add an image of your WRRC here
 
 ## wrrc for third party API
 ![wrrc](./wrrc-API.drawio.png);
+
+### version 1
+Get the data from a json file and handle it.
+
+### version 2
+Get the data from a third party API
