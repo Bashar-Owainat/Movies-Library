@@ -124,8 +124,8 @@ function similarMoiveHandler(req, res) {
 function addMovieDB(req, res) {
     const movie = req.body;
     console.log(movie);
-    const sql = `INSERT INTO addedMovie(title, release_date, poster_path, overview) VALUES($1, $2, $3, $4) RETURNING *`
-    const values = [movie.title, movie.release_date, movie.poster_path, movie.overview]
+    const sql = `INSERT INTO addedMovie(title, release_date, poster_path, overview, comment) VALUES($1, $2, $3, $4, $5) RETURNING *`
+    const values = [movie.title, movie.release_date, movie.poster_path, movie.overview, movie.comment]
     client.query(sql, values).then((result) => {
         return res.status(201).json(result.rows);
     }).catch((error) => {
@@ -147,7 +147,7 @@ function errorHandler(error, req, res) {
         status: 500,
         message: error
     }
-    return res.status(500).sent(err);
+    return res.status(500).send(err);
 }
 
 function notFoundHandler(req, res) {
