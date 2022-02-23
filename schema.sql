@@ -5,5 +5,6 @@ CREATE TABLE IF NOT EXISTS addedMovie(
     title  VARCHAR(255),
     release_date INT,
     poster_path VARCHAR(500),
-    overview VARCHAR(1000)
+    overview VARCHAR(1000),
+    comment VARCHAR(255)
 );
