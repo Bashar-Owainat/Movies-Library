@@ -38,7 +38,7 @@ app.get('/discover', discoverHandler);
 app.get('/similar', similarMoiveHandler);
 app.post('/addmovie', addMovieDB);
 app.get('/getmovie', getMovieDB)
-app.put('/updatcomment/:id', updateCommentDB);
+app.put('/updatecomment/:id', updateCommentDB);
 app.get('/getmovie/:id', getMovieDBID);
 app.delete('/deletemovie/:id',deleteMovieDB )
 app.use('*', notFoundHandler);
@@ -151,7 +151,7 @@ function updateCommentDB(req, res){
     const movie = req.body;
     console.log(id);
     console.log(movie);
-    const sql = `UPDATE addedMovie SET title=$1, release_date=$2, poster_path=$3, overview=$4, comment=$5 WHERE id=$5 RETURNING *;`;
+    const sql = `UPDATE addedMovie SET title=$1, release_date=$2, poster_path=$3, overview=$4, comment=$5 WHERE id=$6 RETURNING *;`;
     const values = [movie.title, movie.release_date, movie.poster_path, movie.overview, movie.comment, id];
     client.query(sql, values).then((result) =>{
         return res.status(200).json(result.rows);
