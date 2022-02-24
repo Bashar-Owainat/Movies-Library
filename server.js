@@ -38,6 +38,9 @@ app.get('/discover', discoverHandler);
 app.get('/similar', similarMoiveHandler);
 app.post('/addmovie', addMovieDB);
 app.get('/getmovie', getMovieDB)
+app.put('/updatcomment/:id', updateCommentDB);
+app.get('/getmovie/:id', getMovieDBID);
+app.delete('/deletemovie/:id',deleteMovieDB )
 app.use('*', notFoundHandler);
 app.use(errorHandler);
 
@@ -142,6 +145,46 @@ function getMovieDB(req, res){
         errorHandler(error, req, res);
     })
 }
+
+function updateCommentDB(req, res){
+    const id = req.params.id;
+    const movie = req.body;
+    console.log(id);
+    console.log(movie);
+    const sql = `UPDATE addedMovie SET title=$1, release_date=$2, poster_path=$3, overview=$4, comment=$5 WHERE id=$5 RETURNING *;`;
+    const values = [movie.title, movie.release_date, movie.poster_path, movie.overview, movie.comment, id];
+    client.query(sql, values).then((result) =>{
+        return res.status(200).json(result.rows);
+    }).catch((error) =>{
+        return errorHandler(error, req, res);
+    })
+}
+
+function getMovieDBID(req, res){
+    const id = req.params.id;
+
+    const sql = `SELECT * FROM addedMovie where id=$1;`;
+    const values = [id] ;
+    client.query(sql, values).then((result) => {
+        return res.status(200).json(result.rows);
+    }).catch((error) => {
+        errorHandler(error, req, res);
+    })
+}
+
+function deleteMovieDB(req, res){
+    const id = req.params.id;
+
+    const sql = `DELETE FROM addedMovie WHERE id=$1;`;
+    const values = [id];
+
+    client.query(sql, values).then(() => {
+        return res.status(204).json({});
+    }).catch((error) =>{
+        errorHandler(error, req, res);
+    })
+}
+
 function errorHandler(error, req, res) {
     const err = {
         status: 500,

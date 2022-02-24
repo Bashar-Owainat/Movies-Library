@@ -6,39 +6,24 @@
 ## WRRC
 Add an image of your WRRC here
 
-## Overview
-
-## Getting Started
-1- Create server.js file
-
-2- npm init -y
-
-3- npm install express
-
-4- const express = require("express")
-
-5- const app = express()
-
-6- app.listen(PORT, ()=>{ console.log("Anything") })
-
-7- I can create end points (ex: app.get("/", helloWorldHandler))
-
-8- I will create the function for that end point(ex: helloWorldHandler)
-
 
 ## Project Features
 <!-- What are the features included in you app -->
 
 ## wrrc for moives
-![wrrc](./wrrc.drawio.png);
+![wrrc](./assets/wrrc.drawio.png);
 
 
 ## wrrc for third party API
-![wrrc](./wrrc-API.drawio.png);
+![wrrc](./assets/wrrc-API.drawio.png);
 
 ## wrrc for client, server and database
 
-![wrrc](./wrrc-version-3.png);
+![wrrc](./assets/wrrc-version-3.png);
+
+## wrrc get, post, put and delete
+
+![wrrc](./assets/movieLibrary-version-4.png);
 
 
 ### version 1
@@ -49,3 +34,6 @@ Get the data from a third party API
 
 ### version  3
 add data to a db and get it using post and get
+
+### version 4
+get, update and delete a specific movie from a db 
