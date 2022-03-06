@@ -68,12 +68,14 @@ function favoriteHandler(req, res) {
     return res.send("Welcome to Favorite Page")
 }
 
+//function Movie(id, title, release_date, poster_path, overview) 
 function trendingHandler(req, res) {
     let results = []
     axios.get(`http://api.themoviedb.org/3/trending/all/week?api_key=${APIKEY}&language=en-US`)
         .then(getResponse => {
+            console.log(getResponse)
             getResponse.data.results.map(value => {
-                let newMovie = new Movie(value.id, value.title, value.poster_path, value.overview);
+                let newMovie = new Movie(value.id, value.title, value.release_date, value.poster_path, value.overview);
                 results.push(newMovie);
             })
             return res.status(200).json(results);
